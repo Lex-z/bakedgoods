@@ -9,6 +9,7 @@ class OrdersController < ApplicationController
   end
 
   def new
+    @food = Food.find(params[:id])
     @order = Order.new
   end
 

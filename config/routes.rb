@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   # Routes for the Order resource:
   # CREATE
-  get "/orders/new", :controller => "orders", :action => "new"
+  get "/orders/:id/new", :controller => "orders", :action => "new"
   post "/create_order", :controller => "orders", :action => "create"
 
   # READ
