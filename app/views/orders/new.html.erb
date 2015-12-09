@@ -39,6 +39,23 @@
         <input type="text" id="quantity" name="quantity" placeholder="Quantity" class="form-control" value="1">
       </div>
 
+
+      <!-- Label and input for pickuptime -->
+      <div class="form-group">
+        <label for="pickuptime" class="control-label">
+          Pickuptime start
+        </label>
+
+        <input type='text' id="pickuptime" name="pickuptime" placeholder="Pickuptime" class="form-control" value="<%= @order.pickuptime %>" />
+
+        <script type="text/javascript">
+          $(function () {
+            $('#pickuptime').datetimepicker();
+          });
+        </script>
+
+      </div>
+
       <!-- Label and input for note -->
       <div class="form-group">
         <label for="note" class="control-label">
@@ -47,6 +64,7 @@
 
         <input type="text" id="note" name="note" placeholder="note" class="form-control" value="<%= @order.note %>">
       </div>
+
       <button class="btn btn-success">
         Create Order
       </button>

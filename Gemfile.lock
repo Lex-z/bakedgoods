@@ -46,6 +46,8 @@ GEM
     bcrypt (3.1.10-x86-mingw32)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap3-datetimepicker-rails (4.17.37)
+      momentjs-rails (>= 2.8.1)
     builder (3.2.2)
     byebug (8.2.1)
     coffee-rails (4.1.0)
@@ -83,6 +85,8 @@ GEM
     mime-types (2.99)
     mini_portile (0.6.2)
     minitest (5.8.3)
+    momentjs-rails (2.10.6)
+      railties (>= 3.1)
     multi_json (1.11.2)
     nokogiri (1.6.6.4-x86-mingw32)
       mini_portile (~> 0.6.0)
@@ -160,11 +164,13 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  bootstrap3-datetimepicker-rails (~> 4.17.37)
   byebug
   coffee-rails (~> 4.1.0)
   devise
   jbuilder (~> 2.0)
   jquery-rails
+  momentjs-rails (>= 2.9.0)
   rails (= 4.2.4)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

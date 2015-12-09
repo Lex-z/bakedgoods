@@ -17,6 +17,7 @@ class OrdersController < ApplicationController
     @order.user_id = params[:user_id]
     @order.food_id = params[:food_id]
     @order.quantity = params[:quantity]
+    @order.pickuptime = params[:pickuptime]
     @order.note = params[:note]
 
     if @order.quantity > @order.food.servings_avail
@@ -43,6 +44,7 @@ def update
   @order.user_id = params[:user_id]
   @order.food_id = params[:food_id]
   @order.quantity = params[:quantity]
+  @order.pickuptime = params[:pickuptime]
   @order.note = params[:note]
 
   @startquantity = params[:startquantity].to_i

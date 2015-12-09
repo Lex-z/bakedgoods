@@ -1,11 +1,11 @@
 <!-- Validation failure messages -->
 <% if @food.errors.any? %>
-  <% @food.errors.full_messages.each do |message| %>
-    <div class="alert alert-dismissable alert-danger">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= message %>
-    </div>
-  <% end %>
+<% @food.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
+<% end %>
 <% end %>
 
 <div class="page-header">
@@ -81,14 +81,22 @@
         <input type="text" id="image" name="image" placeholder="Image" class="form-control" value="<%= @food.image %>">
       </div>
 
-      <!-- Label and input for pickuptime_start -->
+
+   <!-- Label and input for pickuptime_start -->
       <div class="form-group">
         <label for="pickuptime_start" class="control-label">
           Pickuptime start
         </label>
 
-        <input type="text" id="pickuptime_start" name="pickuptime_start" placeholder="Pickuptime start" class="form-control" value="<%= @food.pickuptime_start %>">
+        <input type='text' id="pickuptime_start" name="pickuptime_start" placeholder="Pickuptime start" class="form-control" value="<%= @food.pickuptime_start %>" />
+
+        <script type="text/javascript">
+          $(function () {
+            $('#pickuptime_start').datetimepicker();
+          });
+        </script>
       </div>
+
 
       <!-- Label and input for pickuptime_end -->
       <div class="form-group">
@@ -96,8 +104,15 @@
           Pickuptime end
         </label>
 
-        <input type="text" id="pickuptime_end" name="pickuptime_end" placeholder="Pickuptime end" class="form-control" value="<%= @food.pickuptime_end %>">
+        <input type="text" id="pickuptime_end" name="pickuptime_end" placeholder="Pickuptime end" class="form-control" value="<%= @food.pickuptime_end %>" />
+
+        <script type="text/javascript">
+          $(function () {
+            $('#pickuptime_end').datetimepicker();
+          });
+        </script>
       </div>
+
 
       <!-- Label and input for taste_rate -->
       <div class="form-group">

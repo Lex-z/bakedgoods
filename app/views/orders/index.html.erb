@@ -12,6 +12,7 @@
         <th>User</th>
         <th>Food</th>
         <th>Quantity</th>
+        <th>Pickuptime</th>
         <th>Note</th>
         <th>Actions</th>
       </tr>
@@ -21,6 +22,7 @@
         <td><%= order.user.username %></td>
         <td><%= order.food.foodname %></td>
         <td><%= order.quantity %></td>
+        <td><%= order.pickuptime %></td>
         <td><%= order.note %></td>
         <td>
           <a href="/orders/<%= order.id %>" class="btn btn-primary">Show</a>
