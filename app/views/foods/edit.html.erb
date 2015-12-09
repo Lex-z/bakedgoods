@@ -1,0 +1,137 @@
+<!-- Validation failure messages -->
+<% if @food.errors.any? %>
+  <% @food.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Food #<%= @food.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_food/<%= @food.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for foodname -->
+      <div class="form-group">
+        <label for="foodname" class="control-label">
+          Foodname
+        </label>
+
+        <input type="text" id="foodname" name="foodname" placeholder="Foodname" class="form-control" value="<%= @food.foodname %>">
+      </div>
+
+      <!-- Label and input for description -->
+      <div class="form-group">
+        <label for="description" class="control-label">
+          Description
+        </label>
+
+        <textarea id="description" name="description" placeholder="Description" class="form-control" rows="3"><%= @food.description %></textarea>
+      </div>
+
+      <!-- Label and input for user_id -->
+      <div class="form-group">
+        <label for="user_id" class="control-label">
+          User
+        </label>
+
+        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @food.user_id %>">
+      </div>
+
+      <!-- Label and input for servings_avail -->
+      <div class="form-group">
+        <label for="servings_avail" class="control-label">
+          Servings avail
+        </label>
+
+        <input type="text" id="servings_avail" name="servings_avail" placeholder="Servings avail" class="form-control" value="<%= @food.servings_avail %>">
+      </div>
+
+      <!-- Label and input for servings_purch -->
+      <div class="form-group">
+        <label for="servings_purch" class="control-label">
+          Servings purch
+        </label>
+
+        <input type="text" id="servings_purch" name="servings_purch" placeholder="Servings purch" class="form-control" value="<%= @food.servings_purch %>">
+      </div>
+
+      <!-- Input for price -->
+      <div class="form-group">
+        <label for="price" class="control-label">
+          Price
+        </label>
+
+        <input type="text" id="price" name="price" placeholder="Price" class="form-control" value="<%= @food.price %>">
+      </div>
+
+      <!-- Label and input for image -->
+      <div class="form-group">
+        <label for="image" class="control-label">
+          Image
+        </label>
+
+        <input type="text" id="image" name="image" placeholder="Image" class="form-control" value="<%= @food.image %>">
+      </div>
+
+      <!-- Label and input for pickuptime_start -->
+      <div class="form-group">
+        <label for="pickuptime_start" class="control-label">
+          Pickuptime start
+        </label>
+
+        <input type="text" id="pickuptime_start" name="pickuptime_start" placeholder="Pickuptime start" class="form-control" value="<%= @food.pickuptime_start %>">
+      </div>
+
+      <!-- Label and input for pickuptime_end -->
+      <div class="form-group">
+        <label for="pickuptime_end" class="control-label">
+          Pickuptime end
+        </label>
+
+        <input type="text" id="pickuptime_end" name="pickuptime_end" placeholder="Pickuptime end" class="form-control" value="<%= @food.pickuptime_end %>">
+      </div>
+
+      <!-- Label and input for taste_rate -->
+      <div class="form-group">
+        <label for="taste_rate" class="control-label">
+          Taste rate
+        </label>
+
+        <input type="text" id="taste_rate" name="taste_rate" placeholder="Taste rate" class="form-control" value="<%= @food.taste_rate %>">
+      </div>
+
+      <!-- Label and input for portion_rate -->
+      <div class="form-group">
+        <label for="portion_rate" class="control-label">
+          Portion rate
+        </label>
+
+        <input type="text" id="portion_rate" name="portion_rate" placeholder="Portion rate" class="form-control" value="<%= @food.portion_rate %>">
+      </div>
+
+      <!-- Label and input for value_rate -->
+      <div class="form-group">
+        <label for="value_rate" class="control-label">
+          Value rate
+        </label>
+
+        <input type="text" id="value_rate" name="value_rate" placeholder="Value rate" class="form-control" value="<%= @food.value_rate %>">
+      </div>
+
+
+      <button class="btn btn-warning">
+        Update Food
+      </button>
+      or
+      <a href="/foods/<%= @food.id %>">Cancel</a>
+    </form>
+  </div>
+</div>

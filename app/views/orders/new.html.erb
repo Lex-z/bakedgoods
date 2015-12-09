@@ -1,0 +1,57 @@
+<!-- Validation failure messages -->
+<% if @order.errors.any? %>
+<% @order.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
+<% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Order</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_order" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Input for user_id -->
+      <div class="form-group">
+        <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= current_user.id %>">
+      </div>
+
+      <!-- Label and input for food_id -->
+      <div class="form-group">
+        <label for="food_id" class="control-label">
+          Food
+        </label>
+        <%= select_tag(:food_id, options_from_collection_for_select(Food.order("foodname ASC"), :id, :foodname, @order.food_id), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for quantity -->
+      <div class="form-group">
+        <label for="quantity" class="control-label">
+          Quantity
+        </label>
+        <input type="text" id="quantity" name="quantity" placeholder="Quantity" class="form-control" value="1">
+      </div>
+
+      <!-- Label and input for note -->
+      <div class="form-group">
+        <label for="note" class="control-label">
+          Note
+        </label>
+
+        <input type="text" id="note" name="note" placeholder="note" class="form-control" value="<%= @order.note %>">
+      </div>
+      <button class="btn btn-success">
+        Create Order
+      </button>
+      or
+      <a href="/orders">Cancel</a>
+    </form>
+  </div>
+</div>

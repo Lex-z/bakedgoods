@@ -1,0 +1,58 @@
+<div class="page-header">
+  <h3>Food #<%= @food.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <dl class="dl-horizontal">
+      <dt>Food</dt>
+      <dd><%= @food.food %></dd>
+
+      <dt>Description</dt>
+      <dd><%= @food.description %></dd>
+
+      <dt>User</dt>
+      <dd><%= @food.user_id %></dd>
+
+      <dt>Servings avail</dt>
+      <dd><%= @food.servings_avail %></dd>
+
+      <dt>Servings purch</dt>
+      <dd><%= @food.servings_purch %></dd>
+
+      <dt>Image</dt>
+      <dd><%= @food.image %></dd>
+
+      <dt>Pickuptime start</dt>
+      <dd><%= @food.pickuptime_start %></dd>
+
+      <dt>Pickuptime end</dt>
+      <dd><%= @food.pickuptime_end %></dd>
+
+      <dt>Taste rate</dt>
+      <dd><%= @food.taste_rate %></dd>
+
+      <dt>Portion rate</dt>
+      <dd><%= @food.portion_rate %></dd>
+
+      <dt>Value rate</dt>
+      <dd><%= @food.value_rate %></dd>
+
+      <dt>Integer</dt>
+      <dd><%= @food.integer %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/foods" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/foods/<%= @food.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_food/<%= @food.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>

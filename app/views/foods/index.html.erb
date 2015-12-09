@@ -1,0 +1,50 @@
+<div class="page-header">
+  <h1>
+    Foods
+    <a href="/foods/new" class="btn btn-lg btn-success">New Food</a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Foodname</th>
+        <th>Description</th>
+        <th>User</th>
+        <th>Servings avail</th>
+        <th>Servings purch</th>
+        <th>price</th>
+        <th>Image</th>
+        <th>Pickuptime start</th>
+        <th>Pickuptime end</th>
+        <th>Taste rate</th>
+        <th>Portion rate</th>
+        <th>Value rate</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @foods.each do |food| %>
+      <tr>
+        <td><%= food.foodname %></td>
+        <td><%= food.description %></td>
+        <td><%= food.user.username %></td>
+        <td><%= food.servings_avail %></td>
+        <td><%= food.servings_purch %></td>
+        <td><%= food.price %></td>
+        <td><img src="<%= food.image %>" class="img-responsive"></td>
+        <td><%= food.pickuptime_start %></td>
+        <td><%= food.pickuptime_end %></td>
+        <td><%= food.taste_rate %></td>
+        <td><%= food.portion_rate %></td>
+        <td><%= food.value_rate %></td>
+        <td>
+          <a href="/foods/<%= food.id %>" class="btn btn-primary">Show</a>
+          <a href="/foods/<%= food.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_food/<%= food.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
