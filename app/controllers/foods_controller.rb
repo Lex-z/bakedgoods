@@ -47,8 +47,8 @@ class FoodsController < ApplicationController
     @food.servings_purch = params[:servings_purch]
     @food.price = params[:price]
     @food.image = params[:image]
-    @food.pickuptime_start = params[:pickuptime_start]
-    @food.pickuptime_end = params[:pickuptime_end]
+    @food.pickuptime_start = DateTime.strptime(params[:pickuptime_start], '%m/%d/%Y %H:%M')
+    @food.pickuptime_end = DateTime.strptime(params[:pickuptime_end], '%m/%d/%Y %H:%M')
     @food.taste_rate = params[:taste_rate]
     @food.portion_rate = params[:portion_rate]
     @food.value_rate = params[:value_rate]

@@ -2,20 +2,38 @@
 <div class="row">
   <div class="col-md-12">
     <h2>
-      <p class="text-center">
-        See what's baking!
-      </p>
+    <p class="text-center">
+    See what's baking!
+    </p>
     </h2>
   </div>
 </div>
 <br>
 
 <div class="row">
-  <% @foods.each do |food| %>
-  <div class="col-md-4">
-  <div class="panel panel-default">
-    <div class="panel-body">
+  <div class="col-md-12">
+    <a href="/foods/new" class="btn btn-default btn-block"><i class="fa fa-plus"></i></a>
+  </div>
+</div>
+<br>
 
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Foodname</th>
+        <th>Description</th>
+        <th>Seller</th>
+        <th>Servings avail</th>
+        <th>Servings purch</th>
+        <th>price</th>
+        <th>Image</th>
+        <th>Pickuptime start</th>
+        <th>Pickuptime end</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @foods.each do |food| %>
       <tr>
         <td><%= food.foodname %></td>
         <td><%= food.description %></td>
@@ -24,8 +42,8 @@
         <td><%= food.servings_purch %></td>
         <td><%= food.price %></td>
         <td><img src="<%= food.image %>" class="img-responsive"></td>
-        <td><%= food.pickuptime_start.strftime('%Y') %></td>
-        <td><%= food.pickuptime_end.strftime('%Y') %></td>
+        <td><%= food.pickuptime_start %></td>
+        <td><%= food.pickuptime_end %></td>
         <td>
           <a href="/foods/<%= food.id %>" class="btn btn-success">Show</a>
           <a href="/foods/<%= food.id %>/edit" class="btn btn-warning">Edit</a>
@@ -33,9 +51,7 @@
           <a href="/orders/<%= food.id %>/new" class="btn btn-success" rel="nofollow">Order</a>
         </td>
       </tr>
-
-    </div>
+      <% end %>
+    </table>
   </div>
-</div>
-<% end %>
 </div>
