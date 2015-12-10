@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
     @order.user_id = params[:user_id]
     @order.food_id = params[:food_id]
     @order.quantity = params[:quantity]
-    @order.pickuptime = params[:pickuptime]
+    @order.pickuptime = DateTime.strptime(params[:pickuptime], '%m/%d/%Y %H:%M')
     @order.note = params[:note]
 
     if @order.quantity > @order.food.servings_avail
@@ -42,7 +42,7 @@ class OrdersController < ApplicationController
 
       if @order.save
        @order.food.save
-       redirect_to "/foods", :notice => "Order created successfully."
+       redirect_to "/myorders", :notice => "Order created successfully."
      else
        render 'new'
      end
@@ -58,7 +58,7 @@ def update
   @order.user_id = params[:user_id]
   @order.food_id = params[:food_id]
   @order.quantity = params[:quantity]
-  @order.pickuptime = params[:pickuptime]
+  @order.pickuptime = DateTime.strptime(params[:pickuptime], '%m/%d/%Y %H:%M')
   @order.note = params[:note]
 
   @startquantity = params[:startquantity].to_i

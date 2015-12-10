@@ -1,9 +1,12 @@
 <div class="row">
   <div class="col-md-12">
-    <h2>
-      <p class="text-center">
+    <h2 class="text-center">
+      <p>
         See what's baking!
       </p>
+      <small>
+        the freshed treats, baked with care from those you know
+      </small>
     </h2>
   </div>
 </div>
@@ -13,27 +16,26 @@
   <% @foods.each do |food| %>
   <div class="col-md-4">
     <div class="panel panel-default">
-      <div class="panel-body">
 
-        <tr>
-          <td><%= food.foodname %></td>
-          <td><%= food.description %></td>
-          <td><%= food.user.username %></td>
-          <td><%= food.servings_avail %></td>
-          <td><%= food.servings_purch %></td>
-          <td><%= food.price %></td>
-          <td><div class="image">
-            <img src="<%= food.image %>" class="img img-responsive full-width">
-          </div></td>
-          <td><%= food.pickuptime_start.strftime('%Y') %></td>
-          <td><%= food.pickuptime_end.strftime('%Y') %></td>
-          <td>
-            <a href="/foods/<%= food.id %>" class="btn btn-success">Show</a>
-            <a href="/foods/<%= food.id %>/edit" class="btn btn-warning">Edit</a>
-            <a href="/delete_food/<%= food.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
-            <a href="/orders/<%= food.id %>/new" class="btn btn-success" rel="nofollow">Order</a>
-          </td>
-        </tr>
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= food.foodname %>
+          <small>
+            baked by <%= food.user.username %> (<%= food.servings_avail %> available)
+          </small>
+        </h3>
+      </div>
+
+      <div class="panel-body">
+        <div class="image">
+          <a href="/foods/<%= food.id %>"><img src="<%= food.image %>" class="img img-responsive full-width"></a>
+        </div>
+
+        <p><%= food.description %></p>
+
+        <p>Pickup between:</p>
+        <p><%= food.pickuptime_start.strftime('%b %e, %Y %H:%M %P') %></p>
+        <p><%= food.pickuptime_end.strftime('%b %e, %Y %H:%M %P') %>.</p>
+        <a href="/orders/<%= food.id %>/new" class="btn btn-block btn-success" rel="nofollow">Order: <%= number_to_currency(food.price) %> </a>
 
       </div>
     </div>
