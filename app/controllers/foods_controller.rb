@@ -3,6 +3,10 @@ class FoodsController < ApplicationController
     @foods = Food.all
   end
 
+  def myfoods
+    @foods = Food.where(:user_id => current_user.id)
+  end
+
   def show
     @food = Food.find(params[:id])
   end

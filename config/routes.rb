@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   # READ
   get "/foods", :controller => "foods", :action => "index"
+  get "/myfoods", :controller => "foods", :action => "myfoods"
   get "/foods/:id", :controller => "foods", :action => "show"
 
   # UPDATE
@@ -26,6 +27,7 @@ Rails.application.routes.draw do
 
   # READ
   get "/orders", :controller => "orders", :action => "index"
+  get "/myorders", :controller => "orders", :action => "myorders"
   get "/orders/:id", :controller => "orders", :action => "show"
 
   # UPDATE
