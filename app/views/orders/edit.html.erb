@@ -8,9 +8,18 @@
 <% end %>
 <% end %>
 
-<div class="page-header">
-  <h3>Edit Order #<%= @order.id %></h3>
+
+<div class="row">
+  <div class="col-md-12">
+    <h2>
+      <p class="text-center">
+        Edit Order #<%= @order.id %>: <%= @order.food.foodname %>
+      </p>
+    </h2>
+  </div>
 </div>
+<br>
+
 
 <div class="row">
   <div class="col-md-12">
@@ -18,53 +27,60 @@
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for user_id -->
+      <!-- Input for user_id -->
       <div class="form-group">
-        <label for="user_id" class="control-label">
-          User
-        </label>
-
-        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @order.user_id %>">
+        <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= current_user.id %>">
       </div>
 
       <!-- Label and input for food_id -->
       <div class="form-group">
-        <label for="food_id" class="control-label">
-          Food
-        </label>
-
-        <input type="text" id="food_id" name="food_id" placeholder="Food" class="form-control" value="<%= @order.food_id %>">
+        <input type='hidden' id="food_id" name="food_id" placeholder="food_id" class="form-control" value="<%= @order.food_id %>" />
       </div>
 
       <!-- Label and input for quantity -->
       <div class="form-group">
         <label for="quantity" class="control-label">
-          Quantity
+          Order Quantity
         </label>
-
-        <input type="text" id="quantity" name="quantity" placeholder="Quantity" class="form-control" value="<%= @order.quantity %>">
+        <input type="text" id="quantity" name="quantity" placeholder="Quantity" class="form-control" value="1">
       </div>
 
-      <!-- input for hidden start quantity -->
+      <!-- Label and input for pickuptime -->
       <div class="form-group">
-        <input type="hidden" id="startquantity" name="startquantity" placeholder="startquantity" class="form-control" value="<%= @order.quantity %>">
+        <label for="pickuptime" class="control-label">
+          Pickup Time
+        </label>
+
+        <div class='input-group date' id='datetimepicker1'>
+          <input type='text' id="pickuptime" name="pickuptime" placeholder="enter pickup time here" class="form-control" value="<%= @order.pickuptime %>" />
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+          </span>
+        </div>
+        <script type="text/javascript">
+          $(function () {
+            $('#datetimepicker1').datetimepicker();
+          });
+        </script>
       </div>
 
       <!-- Label and input for note -->
       <div class="form-group">
         <label for="note" class="control-label">
-          Note
+          Notes
         </label>
 
-        <input type="text" id="note" name="note" placeholder="note" class="form-control" value="<%= @order.note %>">
+        <input type="text" id="note" name="note" placeholder="leave special instructions here" class="form-control" value="<%= @order.note %>">
       </div>
 
 
-      <button class="btn btn-warning">
+      <button class="btn btn-warning btn-block">
         Update Order
       </button>
-      or
-      <a href="/orders/<%= @order.id %>">Cancel</a>
+      <div class="text-center">
+        or
+        <a href="/myorders">Cancel</a>
+      </div>
     </form>
   </div>
 </div>

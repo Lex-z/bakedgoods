@@ -45,7 +45,7 @@
         <td><%= food.pickuptime_end.strftime('%b %e, %Y %H:%M %P') %></td>
         <td class="text-center">
           <a href="/foods/<%= food.id %>" class="btn btn-success">Show</a>
-          <a href="/foods/<%= food.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/foods/<%= food.id %>/edit" class="btn btn-warning">Update</a>
           <a href="/delete_food/<%= food.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
         </td>
       </tr>

@@ -20,26 +20,25 @@
   <div class="col-md-12">
     <table class="table table-striped table-hover">
       <tr>
-        <th>Purchaser</th>
-        <th>Food</th>
+        <th>Order #</th>
+        <th>Item</th>
         <th>Seller</th>
         <th>Quantity</th>
-        <th>Pickuptime</th>
-        <th>Note</th>
-        <th>Actions</th>
+        <th>Pickup Time</th>
+        <th>Notes</th>
+        <th class="text-center">Actions</th>
       </tr>
 
       <% @orders.each do |order| %>
       <tr>
-        <td><%= order.user.username %></td>
+        <td><%= order.id %></td>
         <td><%= order.food.foodname %></td>
         <td><%= order.food.user.username %></td>
         <td><%= order.quantity %></td>
-        <td><%= order.pickuptime %></td>
+        <td><%= order.pickuptime.strftime('%b %e, %Y %H:%M %P') %></td>
         <td><%= order.note %></td>
-        <td>
-          <a href="/orders/<%= order.id %>" class="btn btn-primary">Show</a>
-          <a href="/orders/<%= order.id %>/edit" class="btn btn-warning">Edit</a>
+        <td class="text-center">
+          <a href="/orders/<%= order.id %>/edit" class="btn btn-warning">Update</a>
           <a href="/delete_order/<%= order.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
         </td>
       </tr>

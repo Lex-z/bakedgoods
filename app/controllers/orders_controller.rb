@@ -72,7 +72,7 @@ def update
 
   if @order.save
     @order.food.save
-    redirect_to "/orders", :notice => "Order updated successfully."
+    redirect_to "/myorders", :notice => "Order updated successfully."
   else
     render 'edit'
   end
@@ -85,7 +85,7 @@ def destroy
   @order.food.servings_purch = @order.food.servings_purch - @order.quantity
   @order.food.save
   @order.destroy
-  redirect_to "/orders", :notice => "Order deleted."
+  redirect_to "/myorders", :notice => "Order deleted."
 end
 
 end
