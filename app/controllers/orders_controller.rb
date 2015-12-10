@@ -30,10 +30,6 @@ class OrdersController < ApplicationController
     @orders = Order.all
   end
 
-  def show
-    @order = Order.find(params[:id])
-  end
-
   def new
     @food = Food.find(params[:id])
     @order = Order.new
