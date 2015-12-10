@@ -2,10 +2,10 @@
   <div class="col-md-12">
     <h2 class="text-center">
       <p>
-        See what's baking!
+        See what's baking at MPP!
       </p>
       <small>
-        the freshed treats, baked with care from those you know
+        the freshest treats, baked with care from those you know
       </small>
     </h2>
   </div>
@@ -27,12 +27,12 @@
 
       <div class="panel-body">
         <div class="image">
-          <a href="/foods/<%= food.id %>"><img src="<%= food.image %>" class="img img-responsive full-width"></a>
+          <a href="/orders/<%= food.id %>/new"><img src="<%= food.image %>" class="img img-responsive full-width"></a>
         </div>
 
         <p><%= food.description %></p>
 
-        <p>Pickup between:</p>
+        <p>Pickup at <%= food.user.location %> between:</p>
         <p><%= food.pickuptime_start.strftime('%b %e, %Y %H:%M %P') %></p>
         <p><%= food.pickuptime_end.strftime('%b %e, %Y %H:%M %P') %>.</p>
         <a href="/orders/<%= food.id %>/new" class="btn btn-block btn-success" rel="nofollow">Order: <%= number_to_currency(food.price) %> </a>

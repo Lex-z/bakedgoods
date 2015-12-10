@@ -21,66 +21,126 @@
 <br>
 
 
-<div class="row">
-  <div class="col-md-12">
-    <form action="/update_order/<%= @order.id %>" method="post">
-      <!-- Hidden input for authenticity token to protect from forgery -->
-      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
 
-      <!-- Input for user_id -->
-      <div class="form-group">
-        <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= current_user.id %>">
+     <div class="panel panel-default">
+
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @order.food.foodname %>
+          <small>
+            baked by <%= @order.food.user.username %> (<%= @order.food.servings_avail %> available)
+          </small>
+        </h3>
       </div>
 
-      <!-- Label and input for food_id -->
-      <div class="form-group">
-        <input type='hidden' id="food_id" name="food_id" placeholder="food_id" class="form-control" value="<%= @order.food_id %>" />
-      </div>
-
-      <!-- Label and input for quantity -->
-      <div class="form-group">
-        <label for="quantity" class="control-label">
-          Order Quantity
-        </label>
-        <input type="text" id="quantity" name="quantity" placeholder="Quantity" class="form-control" value="1">
-      </div>
-
-      <!-- Label and input for pickuptime -->
-      <div class="form-group">
-        <label for="pickuptime" class="control-label">
-          Pickup Time
-        </label>
-
-        <div class='input-group date' id='datetimepicker1'>
-          <input type='text' id="pickuptime" name="pickuptime" placeholder="enter pickup time here" class="form-control" value="<%= @order.pickuptime %>" />
-          <span class="input-group-addon">
-            <span class="glyphicon glyphicon-calendar"></span>
-          </span>
+      <div class="panel-body">
+        <div class="image">
+          <a href="/foods/<%= @order.food.id %>"><img src="<%= @order.food.image %>" class="img img-responsive full-width"></a>
         </div>
-        <script type="text/javascript">
-          $(function () {
-            $('#datetimepicker1').datetimepicker();
-          });
-        </script>
+
+        <p><%= @order.food.description %></p>
+
+        <p>Pickup at <%= @order.food.user.location %> between:</p>
+        <p><%= @order.food.pickuptime_start.strftime('%b %e, %Y %H:%M %P') %></p>
+        <p><%= @order.food.pickuptime_end.strftime('%b %e, %Y %H:%M %P') %>.</p>
+
       </div>
+    </div>
+  </div>
 
-      <!-- Label and input for note -->
-      <div class="form-group">
-        <label for="note" class="control-label">
-          Notes
-        </label>
 
-        <input type="text" id="note" name="note" placeholder="leave special instructions here" class="form-control" value="<%= @order.note %>">
+  <div class="col-sm-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">About <%= @order.food.user.username %></div>
+      <div class="panel-body">
+        <dl>
+          <dd><img src="<%= @order.food.user.image %>" class="img-responsive img-circle"></dd>
+
+          <dt>located at</dt>
+          <dd><%= @order.food.user.location %></dd>
+          <br>
+          <dt>my story</dt>
+          <dd><%= @order.food.user.bio %></dd>
+        </dl>
       </div>
+    </div>
+  </div>
 
 
-      <button class="btn btn-warning btn-block">
-        Update Order
-      </button>
-      <div class="text-center">
-        or
-        <a href="/myorders">Cancel</a>
+  <div class="col-sm-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">Order Here</div>
+      <div class="panel-body">
+
+        <form action="/update_order/<%= @order.id %>" method="post">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+          <!-- Input for user_id -->
+          <div class="form-group">
+            <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @order.user_id %>">
+          </div>
+
+          <!-- Label and input for food_id -->
+          <div class="form-group">
+            <input type='hidden' id="food_id" name="food_id" placeholder="food_id" class="form-control" value="<%= @order.food_id %>" />
+          </div>
+
+          <!-- Label and input for quantity -->
+          <div class="form-group">
+            <label for="quantity" class="control-label">
+              Order Quantity
+            </label>
+            <input type="text" id="quantity" name="quantity" placeholder="Quantity" class="form-control" value="<%= @order.quantity %>">
+          </div>
+
+          <!-- Input for hidden start quantity used in order calc-->
+          <div class="form-group">
+            <input type="hidden" id="startquantity" name="startquantity" placeholder="startquantity" class="form-control" value="<%= @order.quantity %>">
+          </div>
+
+          <!-- Label and input for pickuptime -->
+          <div class="form-group">
+            <label for="pickuptime" class="control-label">
+              Pickup Time
+            </label>
+
+            <div class='input-group date' id='datetimepicker1'>
+              <input type='text' id="pickuptime" name="pickuptime" placeholder="enter pickup time here" class="form-control" value="<%= @order.pickuptime %>" />
+              <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+            </div>
+            <script type="text/javascript">
+              $(function () {
+                $('#datetimepicker1').datetimepicker();
+              });
+            </script>
+          </div>
+
+          <!-- Label and input for note -->
+          <div class="form-group">
+            <label for="note" class="control-label">
+              Notes
+            </label>
+
+            <input type="text" id="note" name="note" placeholder="leave special instructions here" class="form-control" value="<%= @order.note %>">
+          </div>
+
+          <button class="btn btn-warning btn-block">
+            Update
+          </button>
+          <div class="text-center">
+            or
+            <a href="/myorders">Cancel</a>
+          </div>
+        </form>
       </div>
-    </form>
+    </div>
+
   </div>
 </div>
+</div>
+

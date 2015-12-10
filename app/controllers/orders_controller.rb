@@ -42,7 +42,7 @@ class OrdersController < ApplicationController
 
       if @order.save
        @order.food.save
-       redirect_to "/myorders", :notice => "Order created successfully."
+       redirect_to "/myorders", :notice => "Order created successfully! Your seller will email you directly with confirmation and pickup details."
      else
        render 'new'
      end
