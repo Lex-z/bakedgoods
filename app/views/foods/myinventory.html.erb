@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="col-md-12">
+    <h2>
+      <p class="text-center">
+        My Inventory
+      </p>
+    </h2>
+  </div>
+</div>
+<br>
+
+<div class="row">
+  <div class="col-md-12">
+    <a href="/foods/new" class="btn btn-default btn-block">Add Inventory</a>
+  </div>
+</div>
+<br>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>ID</th>
+        <th></th>
+        <th>Foodname</th>
+        <th>Description</th>
+        <th>Available</th>
+        <th>Purchased</th>
+        <th>Price</th>
+        <th>Pickup Start</th>
+        <th>Pickup End</th>
+        <th class="text-center">Actions</th>
+      </tr>
+
+      <% @foods.each do |food| %>
+      <tr>
+       <td><%= food.id %></td>
+       <td><img src="<%= food.image %>"  width=50px height=50px></td>
+       <td><%= food.foodname %></td>
+       <td><%= food.description %></td>
+       <td><%= food.servings_avail %></td>
+       <td><%= food.servings_purch %></td>
+       <td><%= number_to_currency(food.price) %></td>
+        <td><%= food.pickuptime_start.strftime('%b %e, %Y %H:%M %P') %></td>
+        <td><%= food.pickuptime_end.strftime('%b %e, %Y %H:%M %P') %></td>
+        <td class="text-center">
+          <a href="/foods/<%= food.id %>" class="btn btn-success">Show</a>
+          <a href="/foods/<%= food.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_food/<%= food.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+
+    </div>
+  </div>
+</div>
+<% end %>
+</div>

@@ -1,4 +1,3 @@
-
 <div class="row">
   <div class="col-md-12">
     <h2>
@@ -11,38 +10,33 @@
 <br>
 
 <div class="row">
-  <div class="col-md-12">
-    <a href="/foods/new" class="btn btn-default btn-block"><i class="fa fa-plus"></i></a>
-  </div>
-</div>
-<br>
-
-<div class="row">
   <% @foods.each do |food| %>
   <div class="col-md-4">
-  <div class="panel panel-default">
-    <div class="panel-body">
+    <div class="panel panel-default">
+      <div class="panel-body">
 
-      <tr>
-        <td><%= food.foodname %></td>
-        <td><%= food.description %></td>
-        <td><%= food.user.username %></td>
-        <td><%= food.servings_avail %></td>
-        <td><%= food.servings_purch %></td>
-        <td><%= food.price %></td>
-        <td><img src="<%= food.image %>" class="img-responsive"></td>
-        <td><%= food.pickuptime_start.strftime('%Y') %></td>
-        <td><%= food.pickuptime_end.strftime('%Y') %></td>
-        <td>
-          <a href="/foods/<%= food.id %>" class="btn btn-success">Show</a>
-          <a href="/foods/<%= food.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_food/<%= food.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
-          <a href="/orders/<%= food.id %>/new" class="btn btn-success" rel="nofollow">Order</a>
-        </td>
-      </tr>
+        <tr>
+          <td><%= food.foodname %></td>
+          <td><%= food.description %></td>
+          <td><%= food.user.username %></td>
+          <td><%= food.servings_avail %></td>
+          <td><%= food.servings_purch %></td>
+          <td><%= food.price %></td>
+          <td><div class="image">
+            <img src="<%= food.image %>" class="img img-responsive full-width">
+          </div></td>
+          <td><%= food.pickuptime_start.strftime('%Y') %></td>
+          <td><%= food.pickuptime_end.strftime('%Y') %></td>
+          <td>
+            <a href="/foods/<%= food.id %>" class="btn btn-success">Show</a>
+            <a href="/foods/<%= food.id %>/edit" class="btn btn-warning">Edit</a>
+            <a href="/delete_food/<%= food.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+            <a href="/orders/<%= food.id %>/new" class="btn btn-success" rel="nofollow">Order</a>
+          </td>
+        </tr>
 
+      </div>
     </div>
   </div>
-</div>
-<% end %>
+  <% end %>
 </div>
