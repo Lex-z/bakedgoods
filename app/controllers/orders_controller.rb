@@ -1,10 +1,19 @@
 class OrdersController < ApplicationController
 
-  before_action :current_user_is_owner, :only => [:edit, :update, :destroy]
+  before_action :current_user_is_owner, :only => [:edit, :update]
+  before_action :current_user_is_owner_or_seller, :only => [:destroy]
 
   def current_user_is_owner
     @order = Order.find(params[:id])
     if current_user.id != @order.user_id
+      redirect_to "/orders", :alert => "Access denied. You do not have permission to perform this action."
+    end
+  end
+
+  def current_user_is_owner_or_seller
+    @order = Order.find(params[:id])
+    if current_user.id = @order.user_id || current_user.id = @order.food.user_id
+      else
       redirect_to "/orders", :alert => "Access denied. You do not have permission to perform this action."
     end
   end
@@ -15,6 +24,10 @@ class OrdersController < ApplicationController
 
   def myorders
     @orders = current_user.orders
+  end
+
+  def mysales
+    @orders = Order.all
   end
 
   def show

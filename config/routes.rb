@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   # READ
   get "/orders", :controller => "orders", :action => "index"
   get "/myorders", :controller => "orders", :action => "myorders"
+  get "/mysales", :controller => "orders", :action => "mysales"
   get "/orders/:id", :controller => "orders", :action => "show"
 
   # UPDATE

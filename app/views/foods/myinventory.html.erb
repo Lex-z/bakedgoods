@@ -35,7 +35,7 @@
       <% @foods.each do |food| %>
       <tr>
        <td><%= food.id %></td>
-       <td><img src="<%= food.image %>"  width=50px height=50px></td>
+       <td><img src="<%= food.image %>"  class="img-circle" width=50px height=50px></td>
        <td><%= food.foodname %></td>
        <td><%= food.description %></td>
        <td><%= food.servings_avail %></td>
@@ -44,7 +44,7 @@
         <td><%= food.pickuptime_start.strftime('%b %e, %Y %H:%M %P') %></td>
         <td><%= food.pickuptime_end.strftime('%b %e, %Y %H:%M %P') %></td>
         <td class="text-center">
-          <a href="/foods/<%= food.id %>" class="btn btn-success">Show</a>
+          <a href="/orders/<%= food.id %>/new" class="btn btn-success">Show</a>
           <a href="/foods/<%= food.id %>/edit" class="btn btn-warning">Update</a>
           <a href="/delete_food/<%= food.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
         </td>

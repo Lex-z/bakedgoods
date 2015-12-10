@@ -2,19 +2,13 @@
   <div class="col-md-12">
     <h2>
       <p class="text-center">
-        My Orders
+        My Sales
       </p>
     </h2>
   </div>
 </div>
 <br>
 
-<div class="row">
-  <div class="col-md-12">
-    <a href="/foods" class="btn btn-default btn-block">Order something delicious!</a>
-  </div>
-</div>
-<br>
 
 <div class="row">
   <div class="col-md-12">
@@ -22,7 +16,7 @@
       <tr>
         <th>Order #</th>
         <th>Item</th>
-        <th>Seller</th>
+        <th>Purchaser</th>
         <th>Quantity</th>
         <th>Pickup Time</th>
         <th>Notes</th>
@@ -30,21 +24,23 @@
       </tr>
 
       <% @orders.each do |order| %>
+      <% if order.food.user_id == current_user.id %>
       <tr>
         <td><%= order.id %></td>
         <td><%= order.food.foodname %></td>
 
-        <td><img src="<%= order.food.user.image %>"  class="img-circle" width=50px height=50px>
-        <%= order.food.user.username %></td>
+        <td><img src="<%= order.user.image %>"  class="img-circle" width=50px height=50px>
+        <%= order.user.username %></td>
 
         <td><%= order.quantity %></td>
         <td><%= order.pickuptime.strftime('%b %e, %Y %H:%M %P') %></td>
         <td><%= order.note %></td>
         <td class="text-center">
-          <a href="/orders/<%= order.id %>/edit" class="btn btn-warning">Update</a>
           <a href="/delete_order/<%= order.id %>" class="btn btn-danger" rel="nofollow">Cancel</a>
         </td>
       </tr>
+      <% else %>
+      <% end %>
       <% end %>
     </table>
   </div>

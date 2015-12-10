@@ -9,7 +9,7 @@
 <% end %>
 
 <div class="page-header">
-  <h3>Edit Food #<%= @food.id %></h3>
+  <h3>Update <%= @food.foodname %></h3>
 </div>
 
 <div class="row">
@@ -38,17 +38,13 @@
 
       <!-- Label and input for user_id -->
       <div class="form-group">
-        <label for="user_id" class="control-label">
-          User
-        </label>
-
-        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @food.user_id %>">
+        <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @food.user_id %>">
       </div>
 
       <!-- Label and input for servings_avail -->
       <div class="form-group">
         <label for="servings_avail" class="control-label">
-          Servings avail
+          Servings Available (<%= @food.servings_purch %> Purchased)
         </label>
 
         <input type="text" id="servings_avail" name="servings_avail" placeholder="Servings avail" class="form-control" value="<%= @food.servings_avail %>">
@@ -56,12 +52,9 @@
 
       <!-- Label and input for servings_purch -->
       <div class="form-group">
-        <label for="servings_purch" class="control-label">
-          Servings purch
-        </label>
-
-        <input type="text" id="servings_purch" name="servings_purch" placeholder="Servings purch" class="form-control" value="<%= @food.servings_purch %>">
+        <input type="hidden" id="servings_purch" name="servings_purch" placeholder="Servings purch" class="form-control" value="<%= @food.servings_purch %>">
       </div>
+
 
       <!-- Input for price -->
       <div class="form-group">
@@ -120,42 +113,29 @@
         </script>
       </div>
 
-
-      <!-- Label and input for taste_rate -->
+      <!-- Input for taste_rate -->
       <div class="form-group">
-        <label for="taste_rate" class="control-label">
-          Taste rate
-        </label>
-
-        <input type="text" id="taste_rate" name="taste_rate" placeholder="Taste rate" class="form-control" value="<%= @food.taste_rate %>">
+        <input type="hidden" id="taste_rate" name="taste_rate" placeholder="Taste rate" class="form-control" value="0">
       </div>
 
-      <!-- Label and input for portion_rate -->
+      <!-- Input for portion_rate -->
       <div class="form-group">
-        <label for="portion_rate" class="control-label">
-          Portion rate
-        </label>
-
-        <input type="text" id="portion_rate" name="portion_rate" placeholder="Portion rate" class="form-control" value="<%= @food.portion_rate %>">
+        <input type="hidden" id="portion_rate" name="portion_rate" placeholder="Portion rate" class="form-control" value="0">
       </div>
 
-      <!-- Label and input for value_rate -->
+      <!-- Input for value_rate -->
       <div class="form-group">
-        <label for="value_rate" class="control-label">
-          Value rate
-        </label>
-
-        <input type="text" id="value_rate" name="value_rate" placeholder="Value rate" class="form-control" value="<%= @food.value_rate %>">
+        <input type="hidden" id="value_rate" name="value_rate" placeholder="Value rate" class="form-control" value="0">
       </div>
 
-
-      <button class="btn btn-warning">
+      <button class="btn btn-warning btn-block">
         Update Food
       </button>
-      or
-      <a href="/foods/<%= @food.id %>">Cancel</a>
+      <div class="text-center">
+        or
+        <a href="/myinventory">Cancel</a>
+      </div>
     </form>
-
 
 
   </div>
