@@ -1,4 +1,14 @@
 class FoodsController < ApplicationController
+
+  before_action :current_user_is_owner, :only => [:edit, :update, :destroy]
+
+  def current_user_is_owner
+    @food = Food.find(params[:id])
+    if current_user.id != @food.user_id
+      redirect_to "/foods", :alert => "Access denied. You do not have permission to perform this action."
+    end
+  end
+
   def index
     @foods = Food.all
   end
