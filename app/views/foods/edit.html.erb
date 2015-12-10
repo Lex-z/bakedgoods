@@ -82,17 +82,21 @@
       </div>
 
 
-   <!-- Label and input for pickuptime_start -->
+      <!-- Label and input for pickuptime_start -->
       <div class="form-group">
         <label for="pickuptime_start" class="control-label">
           Pickuptime start
         </label>
 
-        <input type='text' id="pickuptime_start" name="pickuptime_start" placeholder="Pickuptime start" class="form-control" value="<%= @food.pickuptime_start %>" />
-
+        <div class='input-group date' id='datetimepicker1'>
+          <input type='text' id="pickuptime_start" name="pickuptime_start" placeholder="Pickuptime start" class="form-control" value="<%= @food.pickuptime_start %>" />
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+          </span>
+        </div>
         <script type="text/javascript">
           $(function () {
-            $('#pickuptime_start').datetimepicker();
+            $('#datetimepicker1').datetimepicker({format: 'YYYY-MM-DD HH:mm:ss'});
           });
         </script>
       </div>
@@ -103,12 +107,15 @@
         <label for="pickuptime_end" class="control-label">
           Pickuptime end
         </label>
-
-        <input type="text" id="pickuptime_end" name="pickuptime_end" placeholder="Pickuptime end" class="form-control" value="<%= @food.pickuptime_end %>" />
-
+        <div class='input-group date' id='datetimepicker2'>
+          <input type="text" id="pickuptime_end" name="pickuptime_end" placeholder="Pickuptime end" class="form-control" value="<%= @food.pickuptime_end %>" />
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+          </span>
+        </div>
         <script type="text/javascript">
           $(function () {
-            $('#pickuptime_end').datetimepicker();
+            $('#datetimepicker2').datetimepicker();
           });
         </script>
       </div>
@@ -148,5 +155,8 @@
       or
       <a href="/foods/<%= @food.id %>">Cancel</a>
     </form>
+
+
+
   </div>
 </div>

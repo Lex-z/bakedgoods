@@ -11,16 +11,13 @@
       <tr>
         <th>Foodname</th>
         <th>Description</th>
-        <th>User</th>
+        <th>Seller</th>
         <th>Servings avail</th>
         <th>Servings purch</th>
         <th>price</th>
         <th>Image</th>
         <th>Pickuptime start</th>
         <th>Pickuptime end</th>
-        <th>Taste rate</th>
-        <th>Portion rate</th>
-        <th>Value rate</th>
         <th>Actions</th>
       </tr>
 
@@ -35,14 +32,11 @@
         <td><img src="<%= food.image %>" class="img-responsive"></td>
         <td><%= food.pickuptime_start %></td>
         <td><%= food.pickuptime_end %></td>
-        <td><%= food.taste_rate %></td>
-        <td><%= food.portion_rate %></td>
-        <td><%= food.value_rate %></td>
         <td>
-          <a href="/foods/<%= food.id %>" class="btn btn-primary">Show</a>
+          <a href="/foods/<%= food.id %>" class="btn btn-success">Show</a>
           <a href="/foods/<%= food.id %>/edit" class="btn btn-warning">Edit</a>
           <a href="/delete_food/<%= food.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
-          <a href="/orders/<%= food.id %>/new" class="btn btn-danger" rel="nofollow">Order</a>
+          <a href="/orders/<%= food.id %>/new" class="btn btn-success" rel="nofollow">Order</a>
         </td>
       </tr>
       <% end %>

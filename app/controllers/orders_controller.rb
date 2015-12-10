@@ -29,7 +29,7 @@ class OrdersController < ApplicationController
 
       if @order.save
        @order.food.save
-       redirect_to "/orders", :notice => "Order created successfully."
+       redirect_to "/foods", :notice => "Order created successfully."
      else
        render 'new'
      end

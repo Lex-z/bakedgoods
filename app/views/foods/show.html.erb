@@ -1,49 +1,47 @@
-<div class="page-header">
-  <h3>Food #<%= @food.id %></h3>
-</div>
 
-<div class="row">
-  <div class="col-md-12">
-    <dl class="dl-horizontal">
-      <dt>Food</dt>
-      <dd><%= @food.food %></dd>
 
-      <dt>Description</dt>
-      <dd><%= @food.description %></dd>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="page-header">
+        <h3><%= @food.foodname %></h3>
+      </div>
+    </div>
+  </div>
 
-      <dt>User</dt>
-      <dd><%= @food.user_id %></dd>
+  <div class="row">
+    <div class="col-md-9">
 
-      <dt>Servings avail</dt>
-      <dd><%= @food.servings_avail %></dd>
 
-      <dt>Servings purch</dt>
-      <dd><%= @food.servings_purch %></dd>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <dl>
+           <dt>Description</dt>
+           <dd><%= @food.description %></dd>
 
-      <dt>Image</dt>
-      <dd><%= @food.image %></dd>
+           <dt>Servings avail</dt>
+           <dd><%= @food.servings_avail %></dd>
 
-      <dt>Pickuptime start</dt>
-      <dd><%= @food.pickuptime_start %></dd>
+           <dt>Servings purch</dt>
+           <dd><%= @food.servings_purch %></dd>
 
-      <dt>Pickuptime end</dt>
-      <dd><%= @food.pickuptime_end %></dd>
+           <dt>Image</dt>
+           <dd><img src="<%= @food.image %>" class="img-responsive"></dd>
 
-      <dt>Taste rate</dt>
-      <dd><%= @food.taste_rate %></dd>
+           <dt>Pickuptime start</dt>
+           <dd><%= @food.pickuptime_start %></dd>
 
-      <dt>Portion rate</dt>
-      <dd><%= @food.portion_rate %></dd>
+           <dt>Pickuptime end</dt>
+           <dd><%= @food.pickuptime_end %></dd>
 
-      <dt>Value rate</dt>
-      <dd><%= @food.value_rate %></dd>
+         </dl>
+       </div>
+     </div>
 
-      <dt>Integer</dt>
-      <dd><%= @food.integer %></dd>
 
-    </dl>
 
-    <div class="btn-group btn-group-justified">
+
+     <div class="btn-group btn-group-justified">
       <a href="/foods" class="btn btn-primary">
         Back
       </a>
@@ -55,4 +53,26 @@
       </a>
     </div>
   </div>
+
+  <div class="col-md-3">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <dl>
+          <h3>
+            <dt>Seller</dt>
+            <dd><%= @food.user.username %></dd>
+          </h3>
+
+          <dt>Seller Location</dt>
+          <dd><%= @food.user.location %></dd>
+
+          <dt>Seller Bio</dt>
+          <dd><%= @food.user.bio %></dd>
+        </dl>
+
+      </div>
+    </div>
+  </div>
+
+</div>
 </div>

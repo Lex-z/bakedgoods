@@ -1,6 +1,6 @@
 class Food < ActiveRecord::Base
 
-  has_many :orders
+  has_many :orders, dependent: :destroy
   belongs_to :user
 
   validates :foodname, presence: true

@@ -8,8 +8,9 @@
   <div class="col-md-12">
     <table class="table table-striped table-hover">
       <tr>
-        <th>User</th>
+        <th>Purchaser</th>
         <th>Food</th>
+        <th>Seller</th>
         <th>Quantity</th>
         <th>Pickuptime</th>
         <th>Note</th>
@@ -20,6 +21,7 @@
       <tr>
         <td><%= order.user.username %></td>
         <td><%= order.food.foodname %></td>
+        <td><%= order.food.user.username %></td>
         <td><%= order.quantity %></td>
         <td><%= order.pickuptime %></td>
         <td><%= order.note %></td>
