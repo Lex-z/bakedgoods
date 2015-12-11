@@ -15,4 +15,16 @@ class Food < ActiveRecord::Base
   validates :portion_rate, numericality: { only_integer: true}
   validates :value_rate, numericality: { only_integer: true}
 
+  validate :pickuptime_start_cannot_be_in_the_past, :start_cannot_be_after_end
+
+  def pickuptime_start_cannot_be_in_the_past
+    errors.add(:pickuptime_start, "can't be in the past") if
+      !pickuptime_start.blank? and pickuptime_start < DateTime.now
+  end
+
+  def start_cannot_be_after_end
+    errors.add(:pickuptime_start, "can't be after pickuptime end") if
+      pickuptime_start > pickuptime_end
+  end
+
 end

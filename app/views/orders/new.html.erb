@@ -8,7 +8,6 @@
 <% end %>
 <% end %>
 
-
 <div class="row">
   <div class="col-md-12">
     <h2>
@@ -20,123 +19,115 @@
 </div>
 <br>
 
+<div class="row">
+  <div class="col-sm-4">
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-4">
+   <div class="panel panel-default">
 
-     <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= @food.foodname %>
+        <small>
+          baked by <%= @food.user.username %> (<%= @food.servings_avail %> available)
+        </small>
+      </h3>
+    </div>
 
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= @food.foodname %>
-          <small>
-            baked by <%= @food.user.username %> (<%= @food.servings_avail %> available)
-          </small>
-        </h3>
+    <div class="panel-body">
+      <div class="image">
+        <a href="/foods/<%= @food.id %>"><img src="<%= @food.image %>" class="img img-responsive full-width img-rounded"></a>
       </div>
 
-      <div class="panel-body">
-        <div class="image">
-          <a href="/foods/<%= @food.id %>"><img src="<%= @food.image %>" class="img img-responsive full-width"></a>
+      <p><%= @food.description %></p>
+
+      <p>Pickup at <%= @food.user.location %> between:</p>
+      <p><%= @food.pickuptime_start.strftime('%b %e, %Y %H:%M %P') %></p>
+      <p><%= @food.pickuptime_end.strftime('%b %e, %Y %H:%M %P') %>.</p>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="col-sm-4">
+  <div class="panel panel-default">
+    <div class="panel-heading">About <%= @food.user.username %></div>
+    <div class="panel-body">
+      <dl>
+        <dd><img src="<%= @food.user.image %>" class="img-responsive img-circle"></dd>
+
+        <dt>Located at</dt>
+        <dd><%= @food.user.location %></dd>
+        <br>
+        <dt>My story</dt>
+        <dd><%= @food.user.bio %></dd>
+      </dl>
+    </div>
+  </div>
+</div>
+
+
+<div class="col-sm-4">
+  <div class="panel panel-default">
+    <div class="panel-heading">Order Here</div>
+    <div class="panel-body">
+
+      <form action="/create_order" method="post">
+        <!-- Hidden input for authenticity token to protect from forgery -->
+        <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+        <!-- Input for user_id -->
+        <div class="form-group">
+          <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= current_user.id %>">
         </div>
 
-        <p><%= @food.description %></p>
+        <!-- Label and input for food_id -->
+        <div class="form-group">
+          <input type='hidden' id="food_id" name="food_id" placeholder="food_id" class="form-control" value="<%= @food.id %>" />
+        </div>
 
-        <p>Pickup at <%= @food.user.location %> between:</p>
-        <p><%= @food.pickuptime_start.strftime('%b %e, %Y %H:%M %P') %></p>
-        <p><%= @food.pickuptime_end.strftime('%b %e, %Y %H:%M %P') %>.</p>
+        <!-- Label and input for quantity -->
+        <div class="form-group">
+          <label for="quantity" class="control-label">
+            Order Quantity
+          </label>
+          <input type="text" id="quantity" name="quantity" placeholder="Quantity" class="form-control" value="1">
+        </div>
 
-      </div>
+        <!-- Label and input for pickuptime -->
+        <div class="form-group">
+          <label for="pickuptime" class="control-label">
+            Pickup Time
+          </label>
+
+          <input type='text' id="pickuptime" name="pickuptime" placeholder="Pickup time" class="form-control" value="<%= @order.pickuptime %>" />
+
+          <script type="text/javascript">
+            $(function () {
+              $('#pickuptime').datetimepicker();
+            });
+          </script>
+        </div>
+
+        <!-- Label and input for note -->
+        <div class="form-group">
+          <label for="note" class="control-label">
+            Notes
+          </label>
+
+          <input type="text" id="note" name="note" placeholder="leave special instructions here" class="form-control" value="<%= @order.note %>">
+        </div>
+
+        <button class="btn btn-success btn-block">
+          Order Now!
+        </button>
+        <div class="text-center">
+          or
+          <a href="/myorders">Cancel</a>
+        </div>
+      </form>
     </div>
   </div>
 
-
-  <div class="col-sm-4">
-    <div class="panel panel-default">
-      <div class="panel-heading">About <%= @food.user.username %></div>
-      <div class="panel-body">
-        <dl>
-          <dd><img src="<%= @food.user.image %>" class="img-responsive img-circle"></dd>
-
-          <dt>located at</dt>
-          <dd><%= @food.user.location %></dd>
-          <br>
-          <dt>my story</dt>
-          <dd><%= @food.user.bio %></dd>
-        </dl>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="col-sm-4">
-    <div class="panel panel-default">
-      <div class="panel-heading">Order Here</div>
-      <div class="panel-body">
-
-        <form action="/create_order" method="post">
-          <!-- Hidden input for authenticity token to protect from forgery -->
-          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-
-          <!-- Input for user_id -->
-          <div class="form-group">
-            <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= current_user.id %>">
-          </div>
-
-          <!-- Label and input for food_id -->
-          <div class="form-group">
-            <input type='hidden' id="food_id" name="food_id" placeholder="food_id" class="form-control" value="<%= @food.id %>" />
-          </div>
-
-          <!-- Label and input for quantity -->
-          <div class="form-group">
-            <label for="quantity" class="control-label">
-              Order Quantity
-            </label>
-            <input type="text" id="quantity" name="quantity" placeholder="Quantity" class="form-control" value="1">
-          </div>
-
-          <!-- Label and input for pickuptime -->
-          <div class="form-group">
-            <label for="pickuptime" class="control-label">
-              Pickup Time
-            </label>
-
-            <div class='input-group date' id='datetimepicker1'>
-              <input type='text' id="pickuptime" name="pickuptime" placeholder="enter pickup time here" class="form-control" value="<%= @order.pickuptime %>" />
-              <span class="input-group-addon">
-                <span class="glyphicon glyphicon-calendar"></span>
-              </span>
-            </div>
-            <script type="text/javascript">
-              $(function () {
-                $('#datetimepicker1').datetimepicker();
-              });
-            </script>
-          </div>
-
-          <!-- Label and input for note -->
-          <div class="form-group">
-            <label for="note" class="control-label">
-              Notes
-            </label>
-
-            <input type="text" id="note" name="note" placeholder="leave special instructions here" class="form-control" value="<%= @order.note %>">
-          </div>
-
-          <button class="btn btn-success btn-block">
-            Order Now!
-          </button>
-          <div class="text-center">
-            or
-            <a href="/myorders">Cancel</a>
-          </div>
-        </form>
-      </div>
-    </div>
-
-  </div>
 </div>
 </div>
-
 
